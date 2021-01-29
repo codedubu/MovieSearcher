@@ -8,8 +8,8 @@
 import UIKit
 
 class MovieController {
-    // https://api.themoviedb.org/3/search/movie?query=Avengers&api_key=993dc4b0c6ed53e63bfd604ec3a39eca
     
+    // MARK: - URL Components
     static let baseURL = URL(string: "https://api.themoviedb.org/")
     static let imageBaseURL = URL(string: "https://image.tmdb.org/t/p/w500/")
     static let versionComponent = "3"
@@ -19,7 +19,7 @@ class MovieController {
     static let apiKeyString = "api_key"
     static let apiKeyValue = "993dc4b0c6ed53e63bfd604ec3a39eca"
     
-    
+    // MARK: - URL Methods
     static func fetchMovies(with searchTerm: String, completion: @escaping(Result<[Movie], MovieError>) -> Void ) {
         
         guard let baseURL = baseURL else { return completion(.failure(.invalidURL)) }
@@ -38,7 +38,6 @@ class MovieController {
         
         guard let finalURL = movieURLComponents?.url else { return completion(.failure(.invalidURL)) }
         print(finalURL)
-        // https://api.themoviedb.org/3/search/movie?query={searchTerm}&api_key=993dc4b0c6ed53e63bfd604ec3a39eca
         
         URLSession.shared.dataTask(with: finalURL) { (data, _, error) in
             if let error = error {
@@ -55,13 +54,7 @@ class MovieController {
             guard let data = data else { return completion(.failure(.noData)) }
             do {
                 let movieObject = try JSONDecoder().decode(TopLevelObject.self, from: data)
-//                var movies: [Movie] = []
-//
-//                for object in movieObject.results {
-//                    let movie = object
-//
-//                    movies.append(movie)
-//                }
+
                 return completion(.success(movieObject.results))
                 
             } catch {
@@ -75,7 +68,7 @@ class MovieController {
                 return completion(.failure(.unableToDecode))
             }
         }.resume()
-    }
+    } // END OF FUNC
     
     static func fetchPoster(for movie: Movie, completion: @escaping(Result<UIImage,MovieError>) -> Void) {
         
@@ -106,6 +99,6 @@ class MovieController {
             return completion(.success(poster))
             
         }.resume()
-    }
+    } // END OF FUNC
     
 } // END OF CLASS

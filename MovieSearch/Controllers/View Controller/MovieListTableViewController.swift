@@ -9,22 +9,17 @@ import UIKit
 
 class MovieListTableViewController: UITableViewController {
     
+    // MARK: - Outlets
     @IBOutlet weak var movieSearchBar: UISearchBar!
     
     // MARK: - Properties
     var movies: [Movie] = []
     
-    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         movieSearchBar.delegate = self
-        
     }
-    
-    // MARK: - Helper Method
-    
-
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,6 +53,6 @@ extension MovieListTableViewController: UISearchBarDelegate {
                 }
             }
         }
-        
     }
+    
 } // END OF EXTENSION

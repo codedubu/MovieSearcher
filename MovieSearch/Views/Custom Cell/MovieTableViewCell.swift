@@ -8,6 +8,7 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
+    
     // MARK: - Outlets
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -15,14 +16,13 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieOverviewLabel: UILabel!
     
     // MARK: - Properties
-    // Landing Pad
-    
     var movie: Movie? {
         didSet{
             updateViews()
         }
     }
     
+    // MARK: - Helper Methods
     func updateViews() {
         guard let movie = movie else { return }
         movieTitleLabel.text = movie.title
