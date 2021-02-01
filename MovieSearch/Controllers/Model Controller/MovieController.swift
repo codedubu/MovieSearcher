@@ -9,6 +9,11 @@ import UIKit
 
 class MovieController {
     
+    // MARK: - Destination URL
+    // https://api.themoviedb.org/3/search/movie?query=avengers&api_key=993dc4b0c6ed53e63bfd604ec3a39eca
+    // https://api.themoviedb.org/3/search/movie?query={movie}&api_key=993dc4b0c6ed53e63bfd604ec3a39eca
+
+    
     // MARK: - URL Components
     static let baseURL = URL(string: "https://api.themoviedb.org/")
     static let imageBaseURL = URL(string: "https://image.tmdb.org/t/p/w500/")
